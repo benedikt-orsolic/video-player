@@ -4,52 +4,33 @@ import { useEffect, useState } from "react";
 import toWebVtt from "srt-webvtt";
 
 import captionSrc from "./videos/video_1/captions.srt";
+import captionSrcHr from "./videos/video_1/captions_hr.srt";
 import video from "./videos/video_1/clip.mp4";
+import VideoPlayer from './components/video-player/VideoPlayer.jsx';
 
-// <track default kind="captions" src={captions}></track>
-
-console.log();
 export default function App() {
-  const [caption, setCaption] = useState(null);
+  const [captionsList, setCaptionList] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const respons = await fetch(captionSrc);
-      const captionsText = await respons.text();
-      const webVtt = await toWebVtt(new Blob([captionsText]));
-
-      setCaption(webVtt);
-      console.log(webVtt);
+      setCaptionList([
+        { label: "english", src: await convertSrtSrcToVtt(captionSrc) },
+        { label: "hrvatski", src: await convertSrtSrcToVtt(captionSrcHr) },
+      ]);
     })();
   }, []);
 
   return (
     <div className="App">
-      <Video
-        videoSrc={video}
-        captionSrcs={[{ label: "english", src: caption }]}
-      />
+      <VideoPlayer videoSrc={video} captionSrcs={captionsList} />
     </div>
   );
 }
 
-function Video(props) {
-  const { videoSrc, captionSrcs } = props;
+async function convertSrtSrcToVtt(srtSrc) {
+  const respons = await fetch(srtSrc);
+  const captionsText = await respons.text();
+  const webVtt = await toWebVtt(new Blob([captionsText]));
 
-  return (
-    <video controls crossorigin="anonymous">
-      <source src={videoSrc}></source>
-      {captionSrcs.map((captionSrc, idx) => (
-        <track
-          key={captionSrc.src}
-          deafult={idx === 0}
-          label={captionSrc.label}
-          kind="captions"
-          src={captionSrc.src}
-        >
-          {console.log(captionSrc)}
-        </track>
-      ))}
-    </video>
-  );
+  return webVtt;
 }

@@ -1,57 +1,54 @@
-WEBVTT
-
-
-00:00:00.000 --> 00:00:02.500
-[JAZZ MUSIC PLAYING]
+1
+00:00:00,000 --> 00:00:02,500
+[JAZZ GLazba PLAYING]
 
 2
 00:00:04,000 --> 00:00:06,500
-[GROUND SHAKING AND BULLETS
- FIRING]
+[zemlja se trese]
 
 3
 00:00:07,500 --> 00:00:09,500
-[SIRENS WAILING]
+[sirene svrijau]
 
 4
 00:00:14,000 --> 00:00:14,940
-Honey?
+Medu?
 
 5
 00:00:14,940 --> 00:00:15,740
-WOMAN: What?
+WOMAN: Sto?
 
 6
 00:00:15,740 --> 00:00:17,310
-Where is my super suit?
+Gdje mi je gornji dio odjela?
 
 7
 00:00:17,310 --> 00:00:18,110
-WOMAN: What?
+WOMAN: sto?
 
 8
 00:00:18,110 --> 00:00:21,140
-Where is my super suit?
+Gdje mi je gornji dio odjela?
 
 9
 00:00:21,140 --> 00:00:22,664
-WOMAN: I, uh, put it away.
+WOMAN: Uh, ne znam, spremila sam ga
 
 10
 00:00:22,664 --> 00:00:23,480
-[EXPLOSION]
+[ka booom]
 
 11
 00:00:23,480 --> 00:00:24,350
-Where?
+Gdje?
 
 12
 00:00:24,350 --> 00:00:26,700
-WOMAN: Why do you need to know?
+WOMAN: Sto ce ti?
 
 13
 00:00:26,700 --> 00:00:27,500
-I need it!
+treba mi!
 
 14
 00:00:27,500 --> 00:00:28,300
