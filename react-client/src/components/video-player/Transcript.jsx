@@ -1,5 +1,5 @@
 export default function Transcript(props) {
-  const { textTrack, currentActiveCueIds } = props;
+  const { textTrack, currentActiveCueIds, videoElementRef } = props;
 
   if (textTrack == null) {
     return <h3>Select closed captions on video to se transcript</h3>;
@@ -11,13 +11,14 @@ export default function Transcript(props) {
       <TranscriptBody
         textTrack={textTrack}
         currentActiveCueIds={currentActiveCueIds}
+        videoElementRef={videoElementRef}
       />
     </div>
   );
 }
 
 function TranscriptBody(props) {
-  const { textTrack, currentActiveCueIds } = props;
+  const { textTrack, currentActiveCueIds, videoElementRef } = props;
 
   if (textTrack == null) {
     return <h3>Select closed captions on video to se transcript</h3>;
@@ -29,6 +30,7 @@ function TranscriptBody(props) {
         return (
           <TranscriptItem
             key={textCueItem.id}
+            videoElementRef={videoElementRef}
             textCueItem={textCueItem}
             currentActiveCueIds={currentActiveCueIds}
           />
@@ -39,7 +41,7 @@ function TranscriptBody(props) {
 }
 
 function TranscriptItem(props) {
-  const { textCueItem, currentActiveCueIds } = props;
+  const { textCueItem, currentActiveCueIds, videoElementRef } = props;
 
   return (
     <tr
@@ -49,6 +51,7 @@ function TranscriptItem(props) {
           ? " transcript__item__active"
           : "")
       }
+	  onClick={(e) => videoElementRef.currentTime = textCueItem.startTime}
     >
       <td>{formatStartTime(textCueItem.startTime)}</td>
       <td>{textCueItem.text}</td>
