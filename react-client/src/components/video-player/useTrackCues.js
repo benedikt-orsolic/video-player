@@ -16,7 +16,6 @@ export default function useTrackCues() {
         if (isNaN(Number(key))) continue;
         const track = trackList[key];
         if (track.mode === "showing") {
-          console.log(track);
           track.oncuechange = (e) => {
             const cueList = e.target.activeCues;
             const currentActiveCues = Object.values(cueList).map(

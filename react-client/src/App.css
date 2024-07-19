@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.transcript__header {
+  text-align: left;
+}
+
+.transcript {
+  padding: 5%;
+}
+
+.transcript__item__active {
+  background-color: lightblue;
+}
+
+.transcript__item td {
+  text-align: left;
+  padding-left: 1em;
+}
+
+.transcript__item :first-child {
+  text-align: right;
+}
+
+.transcript__body_table {
+  border-collapse: collapse;
+}
