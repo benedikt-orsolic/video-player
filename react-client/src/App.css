@@ -37,6 +37,10 @@
   }
 }
 
+.video-player__video::cue {
+  color: red;
+}
+
 .transcript__header {
   text-align: left;
 }
