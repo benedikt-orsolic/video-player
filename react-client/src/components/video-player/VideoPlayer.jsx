@@ -8,6 +8,8 @@ export default function VideoPlayer(props) {
   const { videoSrc, captionSrcs } = props;
   const videoTagClassNames = ["video-player__video"];
 
+  console.log(videoSrc);
+
   const { setTextTrackList, textTrack, currentActiveCueIds } = useTrackCues();
   const [videoElementRef, setVideoElementRef] = useState();
 
@@ -15,6 +17,9 @@ export default function VideoPlayer(props) {
     <>
       <CaptionsStyling videoTagClassNames={videoTagClassNames} />
       <video
+        // this fixes video not changing on src change
+        // looks like it might be ignoring react updates or something
+        key={videoSrc}
         className={videoTagClassNames.join(" ")}
         // this should not trigger rerenders since text tracks are updated
         // dynamicly ( pointer stays the same )
@@ -23,13 +28,6 @@ export default function VideoPlayer(props) {
           setTextTrackList(el?.textTracks);
         }}
         controls
-        crossOrigin="anonymous"
-        style={{
-          width: "100%",
-          "::cue": {
-            color: "red",
-          },
-        }}
       >
         <source src={videoSrc}></source>
         {captionSrcs.map((captionSrc, idx) => (

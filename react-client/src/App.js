@@ -1,36 +1,26 @@
 import "./App.css";
 
-import {useEffect, useState} from "react";
-import toWebVtt from "srt-webvtt";
+import { useEffect, useState } from "react";
 
-import VideoPlayer from './components/video-player/VideoPlayer.jsx';
+import VideoPlayer from "./components/video-player/VideoPlayer.jsx";
+
+import VideoSelector from "./components/video-selector/VideoSelector.jsx";
 import captionSrc from "./videos/video_1/captions.srt";
 import captionSrcHr from "./videos/video_1/captions_hr.srt";
 import video from "./videos/video_1/clip.mp4";
 
 export default function App() {
-  const [captionsList, setCaptionList] = useState([]);
+  const [currentVideo, setCurrentVideo] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      setCaptionList([
-        {label : "english", src : await convertSrtSrcToVtt(captionSrc)},
-        {label : "hrvatski", src : await convertSrtSrcToVtt(captionSrcHr)},
-      ]);
-    })();
-  }, []);
-
-  return (<div className = "App">
-          <VideoPlayer videoSrc = {
-               video} captionSrcs = { captionsList } />
-    </div>);
+  return (
+    <div className="App">
+      <VideoSelector setCurrentVideo={setCurrentVideo} />
+      {currentVideo != null && (
+        <VideoPlayer
+          videoSrc={currentVideo.videoSrc}
+          captionSrcs={currentVideo.captions}
+        />
+      )}
+    </div>
+  );
 }
-
-async function convertSrtSrcToVtt(srtSrc) {
-  const respons = await fetch(srtSrc);
-  const captionsText = await respons.text();
-  const webVtt = await toWebVtt(new Blob([ captionsText ]));
-
-  return webVtt;
-}
-

@@ -6,8 +6,8 @@ export default function Transcript(props) {
   }
 
   return (
-    <div class="transcript">
-      <h4 class="transcript__header">Transcript</h4>
+    <div className="transcript">
+      <h4 className="transcript__header">Transcript</h4>
       <TranscriptBody
         textTrack={textTrack}
         currentActiveCueIds={currentActiveCueIds}
@@ -26,16 +26,18 @@ function TranscriptBody(props) {
 
   return (
     <table className="transcript__body_table">
-      {Object.values(textTrack.cues || {}).map((textCueItem) => {
-        return (
-          <TranscriptItem
-            key={textCueItem.id}
-            videoElementRef={videoElementRef}
-            textCueItem={textCueItem}
-            currentActiveCueIds={currentActiveCueIds}
-          />
-        );
-      })}
+      <tboy>
+        {Object.values(textTrack.cues || {}).map((textCueItem) => {
+          return (
+            <TranscriptItem
+              key={textCueItem.id}
+              videoElementRef={videoElementRef}
+              textCueItem={textCueItem}
+              currentActiveCueIds={currentActiveCueIds}
+            />
+          );
+        })}
+      </tboy>
     </table>
   );
 }
@@ -51,7 +53,7 @@ function TranscriptItem(props) {
           ? " transcript__item__active"
           : "")
       }
-	  onClick={(e) => videoElementRef.currentTime = textCueItem.startTime}
+      onClick={(e) => (videoElementRef.currentTime = textCueItem.startTime)}
     >
       <td>{formatStartTime(textCueItem.startTime)}</td>
       <td>{textCueItem.text}</td>
