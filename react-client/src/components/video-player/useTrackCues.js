@@ -23,6 +23,7 @@ export default function useTrackCues() {
             );
             setCurrentActiveCueIds(currentActiveCues);
           };
+		console.log(track.cues);
           setTextTrack(track);
 
           break;

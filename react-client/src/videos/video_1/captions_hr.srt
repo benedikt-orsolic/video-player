@@ -4,7 +4,7 @@
 
 2
 00:00:04,000 --> 00:00:06,500
-[zemlja se trese]
+[zemlja se trese i pucnjava]
 
 3
 00:00:07,500 --> 00:00:09,500
@@ -12,27 +12,27 @@
 
 4
 00:00:14,000 --> 00:00:14,940
-Medu?
+Medena?
 
 5
 00:00:14,940 --> 00:00:15,740
-WOMAN: Sto?
+<i>WOMAN</i>: Sto?
 
 6
 00:00:15,740 --> 00:00:17,310
-Gdje mi je gornji dio odjela?
+Gdje mi je <b>super</b> odjelo?
 
 7
 00:00:17,310 --> 00:00:18,110
-WOMAN: sto?
+<i>WOMAN</i>: Što?
 
 8
 00:00:18,110 --> 00:00:21,140
-Gdje mi je gornji dio odjela?
+Gdje mi je <b>super</b> odjelo?
 
 9
 00:00:21,140 --> 00:00:22,664
-WOMAN: Uh, ne znam, spremila sam ga
+<i>WOMAN</i>: Uh, ne znam, spremila sam ga negdje.
 
 10
 00:00:22,664 --> 00:00:23,480
@@ -44,47 +44,43 @@ Gdje?
 
 12
 00:00:24,350 --> 00:00:26,700
-WOMAN: Sto ce ti?
+<i>WOMAN</i>: Što ce ti?
 
 13
 00:00:26,700 --> 00:00:27,500
-treba mi!
+Treba mi!
 
 14
 00:00:27,500 --> 00:00:28,300
-WOMAN: Uh-uh.
+<i>WOMAN</i>: <h1>Uh-uh.</h1>
 
 15
 00:00:28,300 --> 00:00:30,980
-Don't you think about running
-off to doing no derring-do.
+Da se nisi usidio <b><u>uteć!</u></b>
 
 16
 00:00:30,980 --> 00:00:33,140
-We've been planning this
-dinner for two months!
+Planiramo ovo već<b><u>mjesecima!</u></b>
 
 17
 00:00:33,140 --> 00:00:34,385
-The public is in danger!
+Javnost je u <b>opasnosti!</b>
 
 18
 00:00:34,385 --> 00:00:36,570
-WOMAN: My evening's in danger!
+<i>WOMAN</i>: Moja <i>večera</i> je u <i><b><u>opasnosti!</u></b></i>
 
 19
 00:00:36,570 --> 00:00:38,060
-You tell me where
-my suit is, woman!
+Reci mi gdje mi je odjelo, <b>ženo!</b>
 
 20
 00:00:38,060 --> 00:00:40,100
-We are talking about
-the greater good!
+Pričamo o dobru čovječanstva!
 
 21
 00:00:40,100 --> 00:00:40,970
-WOMAN: Greater good?
+<i>WOMAN</i>: Greater good?
 
 22
 00:00:40,970 --> 00:00:42,320
