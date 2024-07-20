@@ -4,6 +4,7 @@ import styles from "./Transcript.module.css";
 export default function Transcript(props) {
   const { textTrack, currentActiveCueIds, videoElementRef } = props;
   const [isAutoScrollEnabled, setIsAutoScrollEnabled] = useState(true);
+  const [transcriptBodyContainer, setTranscriptBodyContainer] = useState(null);
 
   if (videoElementRef == null) {
     return (
@@ -30,8 +31,12 @@ export default function Transcript(props) {
       >
         {isAutoScrollEnabled ? "disable auto scroll" : "enable auto scroll"}
       </button>
-      <div className={styles["transcript__body_table__container"]}>
+      <div
+        ref={(el) => setTranscriptBodyContainer(el)}
+        className={styles["transcript__body_table__container"]}
+      >
         <TranscriptBody
+          transcriptBodyContainer={transcriptBodyContainer}
           textTrack={textTrack}
           currentActiveCueIds={currentActiveCueIds}
           videoElementRef={videoElementRef}
@@ -48,6 +53,7 @@ function TranscriptBody(props) {
     currentActiveCueIds,
     videoElementRef,
     isAutoScrollEnabled,
+    transcriptBodyContainer,
   } = props;
 
   const [_, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -76,6 +82,7 @@ function TranscriptBody(props) {
         {Object.values(textTrack.cues || {}).map((textCueItem) => {
           return (
             <TranscriptItem
+              transcriptBodyContainer={transcriptBodyContainer}
               key={textCueItem.id}
               videoElementRef={videoElementRef}
               textCueItem={textCueItem}
@@ -95,17 +102,18 @@ function TranscriptItem(props) {
     currentActiveCueIds,
     videoElementRef,
     isAutoScrollEnabled,
+    transcriptBodyContainer,
   } = props;
   const isActive = currentActiveCueIds.includes(textCueItem.id);
-  const [tabelRowEl, setTableRowEl] = useState(null);
+  const [tableRowEl, setTableRowEl] = useState(null);
 
   useEffect(() => {
-    if (tabelRowEl == null || !isActive || !isAutoScrollEnabled) {
+    if (tableRowEl == null || !isActive || !isAutoScrollEnabled) {
       return;
     }
 
-    tabelRowEl.scrollIntoView(true);
-  }, [tabelRowEl, isActive, isAutoScrollEnabled]);
+    transcriptBodyContainer.scrollTop = tableRowEl.offsetTop;
+  }, [tableRowEl, isActive, isAutoScrollEnabled]);
 
   return (
     <tr
@@ -126,8 +134,7 @@ function TranscriptItem(props) {
 const tagsRegEx = /<(?!\/?(u|i|b)(>|\s))[^<]+?>/g;
 
 function cleanOutHtmlTags(str) {
-  const resutl = str.replaceAll(tagsRegEx, "");
-  return resutl;
+  return str.replaceAll(tagsRegEx, "");
 }
 
 function formatStartTime(startTime) {

@@ -40,7 +40,7 @@ export default function VideoPlayer(props) {
 
 function VideoPlayerInner(props) {
   const {
-    video: { videoSrc, captions, tumbSrc },
+    video: { videoSrc, captions, thumbSrc },
   } = props;
 
   const { setTextTrackList, textTrack, currentActiveCueIds } =
@@ -60,31 +60,21 @@ function VideoPlayerInner(props) {
             styles["video-player__video"]
           }
           // this should not trigger rerenders since text tracks are updated
-          // dynamicly ( pointer stays the same )
+          // dynamically ( pointer stays the same )
           ref={(el) => {
             setVideoElementRef(el);
             setTextTrackList(el?.textTracks);
           }}
           controls
-	  poster={tumbSrc}
+	        poster={thumbSrc}
           preload="none"
         >
           <source src={videoSrc}></source>
           {captions.map((captionSrc, idx) => {
-            if (idx === 0) {
-              return (
-                <track
-                  key={captionSrc.src}
-                  deafult=""
-                  label={captionSrc.label}
-                  kind="captions"
-                  src={captionSrc.src}
-                ></track>
-              );
-            }
             return (
               <track
                 key={captionSrc.src}
+                default={idx === 0}
                 label={captionSrc.label}
                 kind="captions"
                 src={captionSrc.src}
