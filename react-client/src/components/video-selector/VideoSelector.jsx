@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./VideoSelector.module.css";
 
 import VideosService from "../../services/videos.js";
 
@@ -18,15 +19,15 @@ export default function VideoSelector(props) {
   }
 
   return (
-    <section className="video-selector">
-      <ul className="video-selector__list">
+    <section className={styles["video-selector"]}>
+      <ul className={styles["video-selector__list"]}>
         {videosList.map((video) => (
           <li key={video.title}>
             <button
               className={
-                "video-selector__button" +
+                styles["video-selector__button"] +
                 (currentVideo != null && video.title === currentVideo.title
-                  ? " active"
+                  ? " " + styles["active"]
                   : "")
               }
               onClick={() => setCurrentVideo(video)}

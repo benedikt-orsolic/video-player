@@ -10,14 +10,9 @@ export default function App() {
 
   return (
     <main className="main__video-container">
-      {currentVideo != null && (
-        <VideoPlayer
-          // this fixes video not changing on src change
-          // looks like it might be ignoring react updates or something
-          key={currentVideo.videoSrc}
-          video={currentVideo}
-        />
-      )}
+      <VideoPlayer
+        video={currentVideo}
+      />
       <VideoSelector
         currentVideo={currentVideo}
         setCurrentVideo={setCurrentVideo}

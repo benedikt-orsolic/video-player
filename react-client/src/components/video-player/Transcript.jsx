@@ -1,27 +1,36 @@
-import { useEffect, useState, useMemo, useReducer } from "react";
+import { useEffect, useState, useReducer } from "react";
+import styles from "./Transcript.module.css";
 
 export default function Transcript(props) {
   const { textTrack, currentActiveCueIds, videoElementRef } = props;
   const [isAutoScrollEnabled, setIsAutoScrollEnabled] = useState(true);
 
+  if (videoElementRef == null) {
+    return (
+      <div className={styles["transcript"]}>
+        <h3>There is no video for which to show the transcript</h3>
+      </div>
+    );
+  }
+
   if (textTrack == null) {
     return (
-      <div className="transcript">
+      <div className={styles["transcript"]}>
         <h3>Select closed captions on video to se transcript</h3>
       </div>
     );
   }
 
   return (
-    <div className="transcript">
-      <h4 className="transcript__header">Transcript</h4>
+    <div className={styles["transcript"]}>
+      <h4 className={styles["transcript__header"]}>Transcript</h4>
       <button
-        className="transcript__toggle-auto-scroll"
+        className={styles["transcript__toggle-auto-scroll"]}
         onClick={() => setIsAutoScrollEnabled(!isAutoScrollEnabled)}
       >
         {isAutoScrollEnabled ? "disable auto scroll" : "enable auto scroll"}
       </button>
-      <div className="transcript__body_table__container">
+      <div className={styles["transcript__body_table__container"]}>
         <TranscriptBody
           textTrack={textTrack}
           currentActiveCueIds={currentActiveCueIds}
@@ -62,7 +71,7 @@ function TranscriptBody(props) {
   }
 
   return (
-    <table className="transcript__body_table">
+    <table className={styles["transcript__body_table"]}>
       <tbody>
         {Object.values(textTrack.cues || {}).map((textCueItem) => {
           return (
@@ -102,7 +111,7 @@ function TranscriptItem(props) {
     <tr
       ref={(el) => setTableRowEl(el)}
       className={
-        "transcript__item" + (isActive ? " transcript__item__active" : "")
+        styles["transcript__item"] + (isActive ? " " + styles["active"] : "")
       }
       onClick={(e) => (videoElementRef.currentTime = textCueItem.startTime)}
     >
@@ -118,8 +127,7 @@ const tagsRegEx = /<(?!\/?(u|i|b)(>|\s))[^<]+?>/g;
 
 function cleanOutHtmlTags(str) {
   const resutl = str.replaceAll(tagsRegEx, "");
-	console.log(resutl);
-	return resutl
+  return resutl;
 }
 
 function formatStartTime(startTime) {

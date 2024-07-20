@@ -1,0 +1,37 @@
+
+.video-selector {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.video-selector__list {
+  list-style: none;
+  display: flex;
+}
+
+.video-selector__list li {
+  margin: 0.5em;
+  width: fit-content;
+  height: 1.5em;
+}
+
+.video-selector__button {
+  height: 3em;
+  padding: 0 1em;
+  border: 1px solid black;
+  border-radius: 1.5em;
+  background-color: navy;
+  text-align: left;
+  white-space: nowrap;
+  color: white;
+}
+
+.video-selector__button.active {
+  background-color: gray;
+}
+
+.video-selector__button:hover {
+  background-color: lightblue;
+}
+

@@ -1,10 +1,11 @@
 import { useMemo, useReducer } from "react";
+import styles from "./Captions.module.css";
 
 export default function CaptionsStyling(props) {
   const { videoTagClassNames } = props;
   const [_, forceUpdate] = useReducer((x) => x + 1, 0);
   const cuePseudoClassCssRule = useMemo(() => {
-    return getCssRuleForCuePseudoElement("." + videoTagClassNames.join("."));
+    return getCssRuleForCuePseudoElement("." + videoTagClassNames);
   }, []);
 
   const currentColor = cuePseudoClassCssRule.style.color;
@@ -24,18 +25,21 @@ export default function CaptionsStyling(props) {
   ];
 
   return (
-    <div className="captions-styling">
-      <h4 className="captions-styling__header">Set captions styling</h4>
-      <table className="captions-styling__body">
+    <div className={styles["captions-styling"]}>
+      <h4 className={styles["captions-styling__header"]}>
+        Set captions styling
+      </h4>
+      <table className={styles["captions-styling__body"]}>
         <tbody>
           <tr>
             <td>Text color: </td>
             <td>
               {colorList.map((color) => (
                 <button
-                  className={`captions-styling__body__button${
-                    color === currentColor ? " active" : ""
-                  }`}
+                  className={
+                    styles["captions-styling__body__button"] +
+                    `${color === currentColor ? " " + styles["active"] : ""}`
+                  }
                   key={color}
                   onClick={() => {
                     cuePseudoClassCssRule.style.color = color;
@@ -52,9 +56,12 @@ export default function CaptionsStyling(props) {
             <td>
               {colorList.map((color) => (
                 <button
-                  className={`captions-styling__body__button${
-                    color === currentBackground ? " active" : ""
-                  }`}
+                  className={
+                    styles["captions-styling__body__button"] +
+                    `${
+                      color === currentBackground ? " " + styles["active"] : ""
+                    }`
+                  }
                   key={color}
                   onClick={() => {
                     cuePseudoClassCssRule.style["background-color"] = color;

@@ -1,0 +1,19 @@
+.video-container {
+  display: flex;
+  max-height: 80vh;
+  height: 80vh;
+}
+
+.video-player__video__cue-cards-element::cue {
+  color: lightgray;
+  background-color: black;
+  font-size: 16px;
+}
+
+.video-container__video-box {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+

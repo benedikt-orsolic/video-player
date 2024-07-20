@@ -1,0 +1,47 @@
+.captions-styling {
+  overflow: hidden;
+  position: relative;
+  background-color: #333;
+  color: lightgray;
+  border-radius: 1em;
+  padding: 1em;
+  min-height: 1em;
+}
+
+.captions-styling:hover {
+  overflow: visible;
+}
+
+.captions-styling:hover .captions-styling__body {
+  display: block;
+}
+
+.captions-styling__body {
+  display: none;
+  background-color: #333;
+  width: 100%;
+  padding: 1em;
+  position: absolute;
+  left: 0;
+  top: 2em;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+.captions-styling__body__button {
+  border: none;
+  padding: 0.4em;
+  background-color: gray;
+}
+
+.captions-styling__body__button:hover {
+  background-color: lightgray;
+}
+
+.captions-styling__body__button.active {
+  background-color: darkgray;
+}
+
+.captions-styling__header {
+  margin: 0;
+}
