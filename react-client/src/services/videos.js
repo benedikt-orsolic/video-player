@@ -10,38 +10,47 @@ import tumb2 from "../videos/video_2/tumb.png";
 
 export default class VideoService {
   static async getVideos() {
-    return [
+    let response = [
       {
-        videoSrc: video1,
-        title: "video 1",
-        tumbSrc: tumb1,
-        captions: [
+        videoSrc : video1,
+        title : "video 1",
+        tumbSrc : tumb1,
+        captions : [
           {
-            label: "english",
-            src: await convertSrtSrcToVtt(caption1Src),
+            label : "english",
+            src : await convertSrtSrcToVtt(caption1Src),
           },
           {
-            label: "hrvatski",
-            src: await convertSrtSrcToVtt(caption1SrcHr),
+            label : "hrvatski",
+            src : await convertSrtSrcToVtt(caption1SrcHr),
           },
         ],
       },
       {
-        videoSrc: video2,
-        title: "video 2",
-        tumbSrc: tumb2,
-        captions: [
-          { label: "english", src: await convertSrtSrcToVtt(caption2) },
+        videoSrc : video2,
+        title : "video 2",
+        tumbSrc : tumb2,
+        captions : [
+          {label : "english", src : await convertSrtSrcToVtt(caption2)},
         ],
       },
     ];
+
+    if (true) {
+
+      for (let i = 0; i < 100; i++) {
+                  response.push(structuredClone(response[i%2]));
+      }
+    }
+
+    return response;
   }
 }
 
 async function convertSrtSrcToVtt(srtSrc) {
   const respons = await fetch(srtSrc);
   const captionsText = await respons.text();
-  const webVtt = await toWebVtt(new Blob([captionsText]));
+  const webVtt = await toWebVtt(new Blob([ captionsText ]));
 
   return webVtt;
 }

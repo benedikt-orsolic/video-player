@@ -8,12 +8,13 @@
 .video-selector__list {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .video-selector__list li {
   margin: 0.5em;
   width: fit-content;
-  height: 1.5em;
+  /* height: 1.5em; */
 }
 
 .video-selector__button {
