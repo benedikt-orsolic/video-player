@@ -32,6 +32,7 @@ export default function VideoSelector(props) {
               }
               onClick={() => setCurrentVideo(video)}
             >
+              <img className={styles["tumbnail"]} src={video.tumbSrc} />
               {video.title}
             </button>
           </li>
