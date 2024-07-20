@@ -40,7 +40,7 @@ export default function VideoPlayer(props) {
 
 function VideoPlayerInner(props) {
   const {
-    video: { videoSrc, captions },
+    video: { videoSrc, captions, tumbSrc },
   } = props;
 
   const { setTextTrackList, textTrack, currentActiveCueIds } =
@@ -54,7 +54,11 @@ function VideoPlayerInner(props) {
           videoTagClassNames={styles["video-player__video__cue-cards-element"]}
         />
         <video
-          className={styles["video-player__video__cue-cards-element"]}
+          className={
+            styles["video-player__video__cue-cards-element"] +
+            " " +
+            styles["video-player__video"]
+          }
           // this should not trigger rerenders since text tracks are updated
           // dynamicly ( pointer stays the same )
           ref={(el) => {
@@ -62,7 +66,8 @@ function VideoPlayerInner(props) {
             setTextTrackList(el?.textTracks);
           }}
           controls
-          preload="auto"
+	  poster={tumbSrc}
+          preload="none"
         >
           <source src={videoSrc}></source>
           {captions.map((captionSrc, idx) => {

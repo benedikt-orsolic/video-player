@@ -17,3 +17,6 @@
   width: 100%;
 }
 
+.video-player__video {
+  overflow: hidden;
+}
