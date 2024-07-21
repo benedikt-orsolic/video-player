@@ -8,8 +8,10 @@ import caption2 from "../videos/video_2/captions.srt";
 import video2 from "../videos/video_2/clip.mp4";
 import thumb2 from "../videos/video_2/thumb.png";
 
+import { TVideoItemResponse } from "../types/TVideoItemResponse";
+
 export default class VideoService {
-  static async getVideos() {
+  static async getVideos() : Promise<TVideoItemResponse[]> {
     let response = [
       {
         videoSrc : video1,
@@ -47,7 +49,7 @@ export default class VideoService {
   }
 }
 
-async function convertSrtSrcToVtt(srtSrc) {
+async function convertSrtSrcToVtt(srtSrc: string): Promise<string> {
   const response = await fetch(srtSrc);
   const captionsText = await response.text();
   const webVtt = await toWebVtt(new Blob([ captionsText ]));

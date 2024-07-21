@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./VideoSelector.module.css";
 
-import VideosService from "../../services/videos.js";
+import VideosService from "../../services/videos.ts";
 
 export default function VideoSelector(props) {
   const { currentVideo, setCurrentVideo } = props;
@@ -21,8 +21,8 @@ export default function VideoSelector(props) {
   return (
     <section className={styles["video-selector"]}>
       <ul className={styles["video-selector__list"]}>
-        {videosList.map((video) => (
-          <li key={video.title}>
+        {videosList.map((video, idx) => (
+          <li key={video.title + idx}>
             <button
               className={
                 styles["video-selector__button"] +
