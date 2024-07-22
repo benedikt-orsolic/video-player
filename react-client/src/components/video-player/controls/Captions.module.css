@@ -1,31 +1,32 @@
-.captions-styling {
-  overflow: hidden;
-  position: relative;
-  background-color: #333;
-  color: lightgray;
-  border-radius: 1em;
-  padding: 1em;
-  min-height: 1em;
+.container {
+  /* display: inline-block; */
+  /* width: 2em; */
+	position: absolute;
 }
 
-.captions-styling:hover {
-  overflow: visible;
-}
-
-.captions-styling:hover .captions-styling__body {
+.container:hover .table {
   display: block;
 }
 
-.captions-styling__body {
+.table:hover tbody {
+  display: block;
+}
+
+.table {
   display: none;
   background-color: #333;
   width: 100%;
   padding: 1em;
-  position: absolute;
-  left: 0;
-  top: 2em;
+  margin: 0;
+  /* position: absolute; */
+  /* left: 0; */
+  /* top: 2em; */
   border-bottom-left-radius: 1em;
   border-bottom-right-radius: 1em;
+}
+
+.table tbody tr td {
+  display: flex;
 }
 
 .captions-styling__body__button {
@@ -44,4 +45,9 @@
 
 .captions-styling__header {
   margin: 0;
+  padding-left: 1em;
+}
+
+.bar_placeholder{
+  width: 3em;
 }

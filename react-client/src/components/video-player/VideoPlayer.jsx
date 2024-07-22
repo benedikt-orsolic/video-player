@@ -1,8 +1,21 @@
+/*
+ * note to future self, duplicate all video controls to the right of set styling captions
+ * styling captions hover shows options, hover on other controls does note
+ * going full screen sets entire header transparent, on hover removes transparent, captions style hover works the same
+ *
+ * full screen sets video-box full screen not video tag itself
+ * video tag shall have sibling box of same dimensions as overlay, it shall contain annotations
+ * annotations may be captions or positioned html elements
+ *
+ * or to make it simpler show video title in full screen and custom controls ( this is what youtube does)
+ */
+
 import { useState } from "react";
 
 import useTrackCues from "./useTrackCues.js";
-import CaptionsStyling from "./CaptionsStyling.jsx";
 import Transcript from "./Transcript.jsx";
+import VideoControls from "./controls/VideoControls.tsx";
+import CaptionsControls from "./controls/CaptionsControls.tsx";
 import styles from "./VideoPlayer.module.css";
 
 export default function VideoPlayer(props) {
@@ -12,7 +25,7 @@ export default function VideoPlayer(props) {
     return (
       <section className={styles["video-container"]}>
         <div className={styles["video-container__video-box"]}>
-          <CaptionsStyling
+          <CaptionsControls
             videoTagClassNames={
               styles["video-player__video__cue-cards-element"]
             }
@@ -45,14 +58,32 @@ function VideoPlayerInner(props) {
 
   const { setTextTrackList, textTrack, currentActiveCueIds } =
     useTrackCues(videoSrc);
-  const [videoElementRef, setVideoElementRef] = useState();
+  const [videoElementRef, setVideoElementRef] = useState(null);
+  const [videoWrapperElement, setVideoWrapperElement] = useState(null);
+  const [isAnnotationsEnabled, setIsAnnotationsEnabled] = useState(false);
+	// console.log(textTrack != null && Object.values(textTrack.cues || {}).find(cue => currentActiveCueIds.includes(cue.id)).text);
+
+	// const currentCue = Object.values(textTrack.cues).find(cue => currentActiveCueIds.includes(cue.id))[0];;
 
   return (
     <section className={styles["video-container"]}>
-      <div className={styles["video-container__video-box"]}>
-        <CaptionsStyling
-          videoTagClassNames={styles["video-player__video__cue-cards-element"]}
+      <div
+        className={styles["video-container__video-box"]}
+        ref={(el) => setVideoWrapperElement(el)}
+      >
+        <VideoControls
+          videoElement={videoElementRef}
+          fullScreenContainer={videoWrapperElement}
+          annotationsToggle={() =>
+            setIsAnnotationsEnabled(!isAnnotationsEnabled)
+          }
+          captionsPseudoClassSelectorClass={
+            styles["video-player__video__cue-cards-element"]
+          }
         />
+        {isAnnotationsEnabled && (
+		  <div className={styles.annotations}><div>{textTrack != null && Object.values(textTrack.cues || {})?.find(cue => currentActiveCueIds.includes(cue.id))?.text}</div></div>
+        )}
         <video
           className={
             styles["video-player__video__cue-cards-element"] +
@@ -65,8 +96,8 @@ function VideoPlayerInner(props) {
             setVideoElementRef(el);
             setTextTrackList(el?.textTracks);
           }}
-          controls
-	        poster={thumbSrc}
+          // controls
+          poster={thumbSrc}
           preload="none"
         >
           <source src={videoSrc}></source>
