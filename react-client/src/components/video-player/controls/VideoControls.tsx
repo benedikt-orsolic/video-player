@@ -20,6 +20,7 @@ export default function VideoControls(props: {
       <li>
       <CaptionsControls
         videoTagClassNames={props.captionsPseudoClassSelectorClass}
+        videoElement={props.videoElement}
       />
       </li>
       <li>

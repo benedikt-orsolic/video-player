@@ -2,7 +2,7 @@ import React, { useMemo, useReducer } from "react";
 
 import styles from "./Captions.module.css";
 
-export default function CaptionsControls(props: {videoTagClassNames: string}) {
+export default function CaptionsControls(props: {videoTagClassNames: string, videoElement: HTMLVideoElement}) {
   const [_, forceUpdate] = useReducer((x) => x + 1, 0);
   const cuePseudoClassCssRule = useCaptionsControls(props.videoTagClassNames);
 
@@ -93,6 +93,36 @@ export default function CaptionsControls(props: {videoTagClassNames: string}) {
                   max="52"
                   placeholder={String(currentSize)}
                 />
+              </td>
+            </tr>
+            <tr>
+              <td>Select caption source</td>
+              <td>
+                {props.videoElement?.textTracks != null && Object.values(props.videoElement.textTracks).map(track => (
+
+                  <button
+                    className={
+                      styles["captions-styling__body__button"] +
+                      `${
+                        track.mode === "showing"
+                          ? " " + styles["active"]
+                          : ""
+                      }`
+                    }
+                    key={track.label}
+                    onClick={() => {
+
+                      for(let i = 0; i<props.videoElement.textTracks.length; i++){
+                        props.videoElement.textTracks[i].mode = "hidden";
+                      }
+                      track.mode="showing"
+                    }}
+                  >
+                    {track.label}
+                  </button>
+
+                )
+                )}
               </td>
             </tr>
           </tbody>
