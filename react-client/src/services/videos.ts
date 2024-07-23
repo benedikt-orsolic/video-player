@@ -9,10 +9,11 @@ import video2 from "../videos/video_2/clip.mp4";
 import thumb2 from "../videos/video_2/thumb.png";
 
 import { TVideoItemResponse } from "../types/TVideoItemResponse";
+import Annotations from "../components/video-player/annotations/Annotations";
 
 export default class VideoService {
   static async getVideos() : Promise<TVideoItemResponse[]> {
-    let response = [
+    let response: TVideoItemResponse[] = [
       {
         videoSrc : video1,
         title : "video 1",
@@ -27,6 +28,28 @@ export default class VideoService {
             src : await convertSrtSrcToVtt(caption1SrcHr),
           },
         ],
+        annotations: [
+          {
+            startTime: 0,
+            endTime: 15,
+            text: "Hello world",
+            positionTop: 50,
+            positionLeft: 50,
+          },{
+            startTime: 0,
+            endTime: 15,
+            text: "Hello world again",
+            positionTop: 25,
+            positionLeft: 25,
+          },
+          {
+            startTime: 5,
+            endTime: 15,
+            text: "Hello world and again",
+            positionTop: 75,
+            positionLeft: 75,
+          }
+        ]
       },
       {
         videoSrc : video2,

@@ -1,0 +1,14 @@
+.annotations {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.annotations span{
+  position: absolute;
+  background-color: white;
+  top: 15em;
+  left: 15em;
+  border: 0.5em solid black;
+}

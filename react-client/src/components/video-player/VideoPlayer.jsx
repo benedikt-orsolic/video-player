@@ -16,6 +16,7 @@ import useTrackCues from "./useTrackCues.js";
 import Transcript from "./Transcript.jsx";
 import VideoControls from "./controls/VideoControls.tsx";
 import CaptionsControls from "./controls/CaptionsControls.tsx";
+import Annotations from './annotations/Annotations.tsx';
 import styles from "./VideoPlayer.module.css";
 
 export default function VideoPlayer(props) {
@@ -53,7 +54,7 @@ export default function VideoPlayer(props) {
 
 function VideoPlayerInner(props) {
   const {
-    video: { videoSrc, captions, thumbSrc },
+    video: { videoSrc, captions, thumbSrc, annotations },
   } = props;
 
   const { setTextTrackList, textTrack, currentActiveCueIds } =
@@ -81,8 +82,7 @@ function VideoPlayerInner(props) {
             styles["video-player__video__cue-cards-element"]
           }
         />
-        {isAnnotationsEnabled && (
-		  <div className={styles.annotations}><div>{textTrack != null && Object.values(textTrack.cues || {})?.find(cue => currentActiveCueIds.includes(cue.id))?.text}</div></div>
+        {isAnnotationsEnabled && annotations != null && (<Annotations annotationList={annotations} videoElement={videoElementRef}/>
         )}
         <video
           className={

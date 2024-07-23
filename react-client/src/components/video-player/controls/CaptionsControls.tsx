@@ -108,13 +108,11 @@ function useCaptionsControls(videoTagClassName: string) {
   return useMemo(() => {
     let result: CSSStyleRule | null = null;
     const selectorText = `.${videoTagClassName}::cue`;
-    console.log(selectorText);
 
     outerLoop: for (const styleSheet of document.styleSheets) {
       // This should be CSSStyleRule according to dev tools
       for (const cssRule of (styleSheet.cssRules as unknown as CSSStyleRule[])) {
 
-        console.log(cssRule.selectorText);
         if (cssRule.selectorText === selectorText) {
           result = cssRule;
           break outerLoop;
@@ -127,21 +125,4 @@ function useCaptionsControls(videoTagClassName: string) {
   }, []);
 
 
-}
-
-function getCssRuleForCuePseudoElement(videoTagSelector: string) {
-  let result: CSSStyleRule | null = null;
-  const selectorText = `${videoTagSelector}::cue`;
-
-  outerLoop: for (const styleSheet of document.styleSheets) {
-    // This should be CSSStyleRule according to dev tools
-    for (const cssRule of (styleSheet.cssRules as unknown as CSSStyleRule[])) {
-      if (cssRule.selectorText === selectorText) {
-        result = cssRule;
-        break outerLoop;
-      }
-    }
-  }
-
-  return result;
 }
